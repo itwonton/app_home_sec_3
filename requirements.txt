@@ -98,7 +98,7 @@ ssh-import-id==5.7
 systemd-python==234
 toml==0.10.0
 tox==3.14.0
-Twisted==17.9.0
+Twisted==19.7.0
 ufw==0.36
 unattended-upgrades==0.1
 unicorn==1.0.1
