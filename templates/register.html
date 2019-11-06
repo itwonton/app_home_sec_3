@@ -1,0 +1,77 @@
+<html>
+{% block content %}
+
+
+<div class='content-section', id=success>
+    <h1>Register</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+            {{ success }}
+            {{ failure }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" name='Register' action="/register">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group" name='username'>
+            <br>{{ form.username.label }}
+            {% if form.username.errors %}
+                {{ form.username }}
+                <div class="invalid-feedback">
+                    {% for error in form.username.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.username }}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+
+            {{ form.password.label }}
+            {% if form.password.errors %} 
+                {{ form.password }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.password }}
+            {% endif %}
+        </div>  
+
+        <div class="form-group">
+            {{ form.tfa.label }}
+            {% if form.tfa.errors %}
+                {{ form.tfa }}
+                <div class="invalid-feedback">
+                    {% for error in form.tfa.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.tfa }}
+            {% endif %}
+        </div>  
+
+        <div class="form-group" name='form-button'>
+            <br>{{ form.submit }}
+        </div>
+
+        <div class='login'>
+            <br><span>Already have an account?<a href="{{ url_for('login') }}">Log in.</a></span>
+        </div>
+        <p id='success'>{{success_status}}</p>
+        <p id='failure'>{{failure_status}}</p>
+    </form>
+</div>
+{% endblock content %}
+</html>

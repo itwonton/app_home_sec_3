@@ -1,0 +1,37 @@
+<html>
+{% block content %}
+
+<a href="/spell_check">Spellcheck</a>
+<a href="/history">History</a>
+<a href="/logout">Logout</a>
+
+<head>
+    <title>This is query # {{ queryid }}</title>
+</head>
+
+<body>
+    <h1>Query id # </h1>
+    <p id="queryid"><b>{{queryid}}</b></p>
+
+    <h1>Username:</h1>
+    <p id="username"><b>{{username}}</b></p>
+
+    <h1>Input text: </h1>
+    <p id="querytext"><b>{{querytext}}</b></p>
+
+    <h1>Spellcheck results: </h1>
+    <p id="queryresult"><b>{{queryresult}}</b></p>
+</body>
+
+<end></end>
+
+<div class='content-section'>
+  <form method="POST" name='query' action='/query' readonly> 
+    <br>
+
+  </form>
+</div>
+
+
+{% endblock content %}
+</html>

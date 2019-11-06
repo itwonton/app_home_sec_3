@@ -1,0 +1,96 @@
+<html>
+{% block content %}
+
+<a href="/history">History</a>
+<a href="/logout">Logout</a>
+<br>
+
+<style> 
+    input {
+    width: 75%;
+    height: 100px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    }
+</style>
+
+<!-- <style> 
+    textarea {
+    width: 100%;
+    height: 200px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    }
+</style>
+<form method="POST" name='spellcheck' action='/spell_check'> 
+    {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.text.label  }}
+            {% if form.text.errors %}
+                {{ form.textbox }}
+                <div class="invalid-feedback">
+                    {% for error in form.text.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.textbox }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.submit }}
+        </div>
+
+    <textarea name="textbox"></textarea>
+    <button type="submit" name="submit">Submit</button>
+</form> -->
+
+<div class="content-section">
+    <form method="POST" name='Spellcheck' action="/spell_check">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <br>{{ form.text.label  }}
+            {% if form.text.errors %} <br>
+                {{ form.text }} 
+                <div class="invalid-feedback">
+                    {% for error in form.text.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.text }}
+            {% endif %}
+        </div>
+        <button type="submit" name="submit">Submit</button>
+    </form>
+    <p id="text"><b>{{text}}</b></p>
+    <p id="misspelled"><b>{{results}}</b></p>
+    <form method="GET">
+        
+    </form>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+</html>

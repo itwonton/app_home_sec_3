@@ -1,0 +1,76 @@
+
+{% block content %}
+
+<div>
+    <a href="/">Index</a>
+    <a href="/register">Register</a>
+    <a href="/spell_check">Spellcheck</a>
+</div>
+
+<br>
+{% with results = get_flashed_messages(with_categories=true) %}
+{% if results %}
+  {% for category, result in results %}
+    <div class="alert alert-{{ category }}">
+      {{ result }}
+    </div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="content-container">
+    <h1>Sign in</h1>
+    <form method="POST" name='Login' action="/login">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+        <br>{{ form.username.label }}
+        {% if form.username.errors %} <br>
+            {{ form.username }}
+            <div class="invalid-feedback">
+                {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            <br>{{ form.username }}
+        {% endif %}
+        </div>
+        
+        <div class="form-group">
+        {{ form.password.label }}
+        {% if form.password.errors %} <br>
+            {{ form.password }}
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %} <br>
+            {{ form.password }}
+        {% endif %}
+        </div>  
+
+        <div class="form-group">
+        {{ form.tfa.label }}
+        {% if form.tfa.errors %}<br>
+            {{ form.tfa }}
+            <div class="invalid-feedback">
+                {% for error in form.tfa.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %} <br>
+            {{ form.tfa }}
+        {% endif %}
+        </div>  
+        
+        <div class="form-group">
+        <br>{{ form.submit }}
+        </div>
+
+    </form>
+    <p id=result>{{result}}</p>
+</div>
+
+{% endblock %}
